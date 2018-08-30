@@ -1,0 +1,12 @@
+int main() 
+{ 
+int a = 5;
+int result; 
+label:
+if (a > 0)
+{
+result = result + a;
+goto label;
+}
+return result;
+}

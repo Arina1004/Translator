@@ -1,0 +1,79 @@
+ORG 8000H
+ORG 0
+LXI H, 0
+SPHL
+CALL main
+END 
+@MULT:
+; Code for MULT libraru function
+@PRINT:
+; Code for PRINT libraru function
+
+main:
+LXI B,0
+PUSH B
+PUSH B
+PUSH B
+PUSH B
+	;(LBL,,,L0)
+LBL0:
+	;(ADD,1,'5',3)
+MVI A,5
+MOV B,A
+LXI H,6
+DAD SP
+MOV A,M
+ADD B
+LXI H,2
+DAD SP
+MOV M,A
+	;(MOV,3,,2)
+LXI H,2
+DAD SP
+MOV A,M
+LXI H,4
+DAD SP
+MOV M,A
+	;(MOV,'1',,4)
+MVI A,1
+LXI H,0
+DAD SP
+MOV M,A
+	;(LE,'20',2,L1)
+LXI H,4
+DAD SP
+MOV A,M
+MOV B,A
+MVI A,20
+CMP B
+JÌ LBL1
+JZ LBL1
+	;(MOV,'0',,4)
+MVI A,0
+LXI H,0
+DAD SP
+MOV M,A
+	;(LBL,,,L1)
+LBL1:
+	;(EQ,4,'0',L2)
+MVI A,0
+MOV B,A
+LXI H,0
+DAD SP
+MOV A,M
+CMP B
+JZ LBL2
+	;(JMP,,,L0)
+JMP LBL0
+	;(LBL,,,L2)
+LBL2:
+	;(RET,,,'0')
+MVI A,0
+LXI H,10
+DAD SP
+MOV M,A
+POP
+POP
+POP
+POP
+RET
